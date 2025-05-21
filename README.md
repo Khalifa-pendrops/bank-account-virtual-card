@@ -75,7 +75,9 @@ This is a secure Node.js + TypeScript API for creating bank accounts with automa
 
    ```
 
-5. Data flow
+---
+
+### Data flow
 
 - Client sends account creation request
 - Server:
@@ -89,7 +91,9 @@ This is a secure Node.js + TypeScript API for creating bank accounts with automa
    - Virtual card details
    - Both encrypted and decrypted versions
 
-6. Security
+---
+
+### Security
 - Encrypted Fields:
 - Card number
 - CVV
@@ -99,7 +103,9 @@ This is a secure Node.js + TypeScript API for creating bank accounts with automa
 - Environment Variables for secrets
 - No hardcoded sensitive information
 
-7. Testing
+---
+
+### Testing
 
 The API is documented and available on Postman.
 - Online docs: 🌐 [Click here to view the API docs](https://documenter.getpostman.com/view/39824274/2sB2qZF37a)
