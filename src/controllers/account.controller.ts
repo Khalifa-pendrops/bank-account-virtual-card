@@ -25,7 +25,7 @@ export const createAccountHandler = async (req: Request, res: Response) => {
         phoneNumber,
         dateOfBirth,
       }
-    );
+    ); 
 
     //response with both encrypted and decrypted data
     const response = {

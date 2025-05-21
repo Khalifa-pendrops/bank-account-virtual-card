@@ -77,14 +77,14 @@ This is a secure Node.js + TypeScript API for creating bank accounts with automa
 
 5. Data flow
 
-1. Client sends account creation request
-2. Server:
+- Client sends account creation request
+- Server:
    - Validates input
    - Generates account number
    - Creates virtual card
    - Encrypts sensitive data
    - Stores in database
-3. Returns:
+- Returns:
 
    - Account details
    - Virtual card details
