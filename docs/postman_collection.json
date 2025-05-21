@@ -1,0 +1,38 @@
+{
+	"info": {
+		"_postman_id": "de1e3678-51f6-4461-b268-deb09ec3a35b",
+		"name": "BANK ACCOUNT",
+		"description": "The collection comprise of requests to create account + virtual card, retrieve created accounts and to decrypt encrypted data.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39824274"
+	},
+	"item": [
+		{
+			"name": "create account",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"description": "The API endpoint creates a new bank account and virtual card.\n\n### Request Body\n\n- firstName (string): The first name of the account holder.\n    \n- surname (string): The surname of the account holder.\n    \n- email (string): The email address of the account holder.\n    \n- phoneNumber (string): The phone number of the account holder.\n    \n- dateOfBirth (string): The date of birth of the account holder.\n    \n\n### Response\n\nThe response is in JSON format and includes the following fields:\n\n- account (object): Details of the created account, including first name, surname, email, phone number, date of birth, account number, creation timestamp, and other metadata.\n    \n- card (object): Details of the virtual card associated with the account, including card number, CVV, expiry date, creation timestamp, and other metadata.\n    \n- encryptedData (object): Encrypted data for phone number, date of birth, card number, CVV, and expiry date, including encryption details such as IV and authentication tag.\n    \n\nExample response:\n\n``` json\n{\n  \"account\": {\n    \"firstName\": \"\",\n    \"surname\": \"\",\n    \"email\": \"\",\n    \"phoneNumber\": \"\",\n    \"phoneIV\": \"\",\n    \"phoneAuthTag\": \"\",\n    \"dateOfBirthIV\": \"\",\n    \"dateOfBirthAuthTag\": \"\",\n    \"dateOfBirth\": \"\",\n    \"accountNumber\": \"\",\n    \"_id\": \"\",\n    \"createdAt\": \"\",\n    \"__v\": 0,\n    \"decryptedPhoneNumber\": \"\",\n    \"decryptedDateOfBirth\": \"\"\n  },\n  \"card\": {\n    \"accountNumber\": \"\",\n    \"cardNumber\": \"\",\n    \"cardIV\": \"\",\n    \"cardAuthTag\": \"\",\n    \"cvv\": \"\",\n    \"cvvIV\": \"\",\n    \"cvvAuthTag\": \"\",\n    \"expiryDate\": \"\",\n    \"expiryDateIV\": \"\",\n    \"expiryDateAuthTag\": \"\",\n    \"_id\": \"\",\n    \"createdAt\": \"\",\n    \"__v\": 0,\n    \"decryptedCardNumber\": \"\",\n    \"decryptedCvv\": \"\",\n    \"decryptedExpiryDate\": \"\"\n  },\n  \"encryptedData\": {\n    \"phoneNumber\": {\n      \"encrypted\": \"\",\n      \"iv\": \"\",\n      \"authTag\": \"\"\n    },\n    \"dateOfBirth\": {\n      \"encrypted\": \"\",\n      \"iv\": \"\",\n      \"authTag\": \"\"\n    },\n    \"cardNumber\": {\n      \"encrypted\": \"\",\n      \"iv\": \"\",\n      \"authTag\": \"\"\n    },\n    \"cvv\": {\n      \"encrypted\": \"\",\n      \"iv\": \"\",\n      \"authTag\": \"\"\n    },\n    \"expiryDate\": {\n      \"encrypted\": \"\",\n      \"iv\": \"\",\n      \"authTag\": \"\"\n    }\n  }\n}\n\n ```\n\nThis endpoint allows you to create a new bank account and virtual card.\n\n#### Request Body\n\n- `firstName` (string): The first name of the account holder.\n    \n- `surname` (string): The surname of the account holder.\n    \n- `email` (string): The email address of the account holder.\n    \n- `phoneNumber` (string): The phone number of the account holder.\n    \n- `dateOfBirth` (string): The date of birth of the account holder.\n    \n\n#### Response\n\nUpon a successful creation, the response will have a status code of 201 and a JSON body containing the newly created account and card details along with encrypted data for phone number, date of birth, card number, CVV, and expiry date."
+			},
+			"response": []
+		},
+		{
+			"name": "get accounts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"description": "The endpoint retrieves a list of all accounts from the virtual bank and virtual card system.\n\nThe response returns a JSON array with the following fields for each account:\n\n- _id (String): The unique identifier for the account.\n    \n- firstName (String): The first name of the account holder.\n    \n- surname (String): The surname of the account holder.\n    \n- email (String): The email address associated with the account.\n    \n- phoneNumber (String): The encrypted phone number of the account holder.\n    \n- phoneIV (String): Initialization Vector (IV) for the encrypted phone number.\n    \n- phoneAuthTag (String): Authentication tag for the encrypted phone number.\n    \n- dateOfBirthIV (String): Initialization Vector (IV) for the encrypted date of birth.\n    \n- dateOfBirthAuthTag (String): Authentication tag for the encrypted date of birth.\n    \n- dateOfBirth (String): The encrypted date of birth of the account holder.\n    \n- accountNumber (String): The account number associated with the account.\n    \n- createdAt (String): The date and time when the account was created.\n    \n- __v (Number): Version key for the account document.\n    \n- fullname (String): The full name of the account holder.\n    \n- decryptedPhoneNumber (String): The decrypted phone number of the account holder.\n    \n- decryptedDateOfBirth (String): The decrypted date of birth of the account holder.\n    \n- card (Object): An object containing details of the associated card, including:\n    \n    - _id (String): The unique identifier for the card.\n        \n    - accountNumber (String): The account number associated with the card.\n        \n    - cardNumber (String): The encrypted card number.\n        \n    - cardIV (String): Initialization Vector (IV) for the encrypted card number.\n        \n    - cardAuthTag (String): Authentication tag for the encrypted card number.\n        \n    - cvv (String): The encrypted CVV of the card.\n        \n    - cvvIV (String): Initialization Vector (IV) for the encrypted CVV.\n        \n    - cvvAuthTag (String): Authentication tag for the encrypted CVV.\n        \n    - expiryDate (String): The encrypted expiry date of the card.\n        \n    - expiryDateIV (String): Initialization Vector (IV) for the encrypted expiry date.\n        \n    - expiryDateAuthTag (String): Authentication tag for the encrypted expiry date.\n        \n    - createdAt (String): The date and time when the card was created.\n        \n    - __v (Number): Version key for the card document.\n        \n    - decryptedCard (Object): An object containing decrypted details of the card, including:\n        \n        - cardNumber (String): The decrypted card number.\n            \n        - cvv (String): The decrypted CVV.\n            \n        - expiryDate (String): The decrypted expiry date.\n            \n\nThe response of this request can be documented as a JSON schema based on the provided fields and their data types."
+			},
+			"response": []
+		},
+		{
+			"name": "decrypt",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"description": "### POST /api/encryption/decrypt\n\nThis endpoint is used to decrypt encrypted data using the specified initialization vector (IV) and authentication tag.\n\n#### Request Body\n\n- `encryptedData` (string): The encrypted data to be decrypted.\n    \n- `iv` (string): The initialization vector used for encryption.\n    \n- `authTag` (string): The authentication tag used for encryption.\n    \n\n#### Response\n\nThe response for this request is a JSON object with the following schema:\n\n``` json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    // Define the properties of the response JSON schema here\n  }\n}\n\n ```"
+			},
+			"response": []
+		}
+	]
+}

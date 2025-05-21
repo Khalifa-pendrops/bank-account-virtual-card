@@ -9,6 +9,7 @@ if (!rawKey) {
   throw new Error("An encryption key is missing");
 }
 const key = crypto.scryptSync(rawKey, "salt", 32);
+
 const IV_LENGTH = 16;
 
 // Encrypt data here
@@ -26,7 +27,7 @@ export const encryptData = (data: string) => {
   return {
     encrypted,
     iv: iv.toString("base64"),
-    authTag: authTag.toString("base64"),
+    authTag: authTag.toString("base64"), 
   };
 };
 
