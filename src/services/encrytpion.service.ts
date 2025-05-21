@@ -4,7 +4,11 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const algorithm = "aes-256-gcm";
-const key = crypto.scryptSync(process.env.ENCRYPTION_KEY as string, "salt", 32);
+const rawKey = process.env.ENCRYPTION_KEY as string;
+if (!rawKey) {
+  throw new Error("An encryption key is missing");
+}
+const key = crypto.scryptSync(rawKey, "salt", 32);
 const IV_LENGTH = 16;
 
 // Encrypt data here
@@ -21,8 +25,8 @@ export const encryptData = (data: string) => {
 
   return {
     encrypted,
-    iv: iv.toString("base64"), 
-    authTag: authTag.toString("base64"), 
+    iv: iv.toString("base64"),
+    authTag: authTag.toString("base64"),
   };
 };
 
