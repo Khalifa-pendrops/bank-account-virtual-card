@@ -1,13 +1,12 @@
+import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
-import dotenv from "dotenv";
 import connectDatabase from "./config/db";
 import accountRoutes from "./routes/account.routes";
 import encryptionRoutes from "./routes/encryption.routes";
-
-dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
