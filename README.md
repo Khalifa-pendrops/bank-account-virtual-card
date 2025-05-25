@@ -81,19 +81,20 @@ This is a secure Node.js + TypeScript API for creating bank accounts with automa
 
 - Client sends account creation request
 - Server:
-   - Validates input
-   - Generates account number
-   - Creates virtual card
-   - Encrypts sensitive data
-   - Stores in database
+  - Validates input
+  - Generates account number
+  - Creates virtual card
+  - Encrypts sensitive data
+  - Stores in database
 - Returns:
-   - Account details
-   - Virtual card details
-   - Both encrypted and decrypted versions
+  - Account details
+  - Virtual card details
+  - Both encrypted and decrypted versions
 
 ---
 
 ### Security
+
 - Encrypted Fields:
 - Card number
 - CVV
@@ -108,8 +109,8 @@ This is a secure Node.js + TypeScript API for creating bank accounts with automa
 ### Testing
 
 The API is documented and available on Postman.
-- Online docs: 🌐 [![Click here to view the API docs](https://shields.io/badge/Click%MeMe-Button-blue)](https://documenter.getpostman.com/view/39824274/2sB2qZF37a)
+
+- Online docs: 🌐 [Click here to view the API docs](https://documenter.getpostman.com/view/39824274/2sB2qZF37a)
 - Download and import: You can also import the API collection into Postman manually using the [`postman_collection.json`](./docs/postman_collection.json)
 
 ---
-
