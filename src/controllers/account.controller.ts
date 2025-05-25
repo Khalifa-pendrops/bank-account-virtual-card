@@ -25,7 +25,7 @@ export const createAccountHandler = async (req: Request, res: Response) => {
         phoneNumber,
         dateOfBirth,
       }
-    ); 
+    );
 
     //response with both encrypted and decrypted data
     const response = {
@@ -43,7 +43,7 @@ export const createAccountHandler = async (req: Request, res: Response) => {
       encryptedData,
     };
 
-    res.status(201).json(response);
+    res.status(201).json({ status: "Success 🎉", response });
   } catch (error: any) {
     res.status(500).json({
       message: error.message,
@@ -84,7 +84,7 @@ export const getAllAccountsHandler = async (req: Request, res: Response) => {
           !account.dateOfBirthIV ||
           !account.dateOfBirthAuthTag
         ) {
-          throw new Error("Missing decryption parameters for account data.");
+          throw new Error("Missing decryption parameters for account data. 😞");
         }
 
         return {
@@ -105,7 +105,7 @@ export const getAllAccountsHandler = async (req: Request, res: Response) => {
       })
     );
 
-    res.status(200).json(accountWithDecryptedData);
+    res.status(200).json({ status: "Success 🎉", accountWithDecryptedData });
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }

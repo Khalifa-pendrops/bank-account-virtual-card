@@ -19,7 +19,7 @@ export const createAccount = async (data: CreateAccountInput) => {
     throw new Error("Email already exists 🚫");
   }
 
-  //if email is unique, proceed to create unique account number by calling the generate account function in the utils helper.ts
+  //if email is unique, proceed to create unique account number by calling the generateAccount function in the utils helper.ts
   let accountNumber!: string;
   let isUnique = false;
 
@@ -28,7 +28,7 @@ export const createAccount = async (data: CreateAccountInput) => {
     isUnique = await isAccountNumberUnique(accountNumber);
   }
 
-  //first encrypt data in the account details
+  //first encrypt the data (phoneNumber and dateOfBirth) in the account details
   const encryptedPhone = encryptData(data.phoneNumber);
   const encryptedDateOfBirth = encryptData(data.dateOfBirth);
 
@@ -46,6 +46,7 @@ export const createAccount = async (data: CreateAccountInput) => {
 
   await account.save();
 
+  //since virtual card is created for each account on creation, let's return card for the account too
   const {
     card,
     decryptedCard,

@@ -9,7 +9,8 @@ import { encryptData } from "./encrytpion.service";
 
 //create and save card to DB
 export const createVirtualCard = async (accountNumber: string) => {
-  //lets generate card details
+  //let's generate card details
+  //cardNumber must be required to create a virtual card and it must be a string as well
   let cardNumber!: string;
   let isUnique = false;
 
@@ -18,7 +19,7 @@ export const createVirtualCard = async (accountNumber: string) => {
     isUnique = await isCardNumberUnique(cardNumber);
   }
 
-  //lets generate card number by calling the generateCarNumber function in the uitils helper.ts
+  //let's generate cvv and expiryDate by calling the their respective functions in the uitils helper.ts
   const cvv = generateCvv();
   const expiryDate = generateExpiryDate();
 
@@ -27,9 +28,11 @@ export const createVirtualCard = async (accountNumber: string) => {
   const encryptedCvv = encryptData(cvv);
   const encryptedExpiryDate = encryptData(expiryDate);
 
-  //now lets create card (with details)
+  //now let's create and save encrypted card (with details)
+  //each card detail has its own iv and authTag required for decryption
   const card = new Card({
     accountNumber,
+
     cardNumber: encryptedCardNumber.encrypted,
     cardIV: encryptedCardNumber.iv,
     cardAuthTag: encryptedCardNumber.authTag,
